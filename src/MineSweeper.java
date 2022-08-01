@@ -3,23 +3,28 @@ import java.util.Scanner;
 
 public class MineSweeper {
 
-    static boolean min_length(int row, int column) {
+
+    boolean min_length(int row, int column) {
 
         Scanner input = new Scanner(System.in);
+
+
+
+
         String[][] matrix = new String[row][column];
-        int index=0;
+        int index = 0;
         int n = row * column;
         int mine_number = n / 4;
+        boolean isTrue;
 
 
         System.out.println("Mayın Tarlası oyununa hoşgeldiniz :) ");
 
-        for(int i=0;i<row;i++){
-            for(int j=0;j<column;j++)
-                {
-                    matrix[i][j]="-";
-                }
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                matrix[i][j] = "-";
             }
+        }
 
 
         for (int i = 0; i < mine_number; i++) {
@@ -30,8 +35,8 @@ public class MineSweeper {
             matrix[mine_row][mine_column] = "*";
         }
 
-        for(String[] a : matrix){
-            for(String b : a){
+        for (String[] a : matrix) {
+            for (String b : a) {
 
                 System.out.print(b + "  ");
             }
@@ -52,7 +57,7 @@ public class MineSweeper {
 
 
                 System.out.println("Hatalı giriş yaptınız");
-                return min_length(row,column);
+                return min_length(row, column);
 
 
             }
@@ -62,9 +67,8 @@ public class MineSweeper {
                     if (matrix[i][j].equals("*") && matrix[i][j].equals(matrix[choose_row][choose_column])) {
 
                         System.out.println("Eyvah mayına bastınız!");
-                         return false;
-                    }
-                    else {
+                        return false;
+                    } else {
 
                         int length = (int) Math.sqrt(Math.pow((choose_row - i), 2) + Math.pow((choose_column - j), 2));
 
@@ -80,8 +84,8 @@ public class MineSweeper {
 
             matrix[choose_row][choose_column] = String.valueOf(sum);
 
-            for(String[] a : matrix){
-                for(String b : a){
+            for (String[] a : matrix) {
+                for (String b : a) {
 
                     System.out.print(b + "  ");
                 }
@@ -89,30 +93,11 @@ public class MineSweeper {
             }
         }
 
-        while (n- mine_number > index );
+        while (n - mine_number > index);
+
 
         return true;
-}
-
-    public static void main(String[] args) {
-
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Lütfen satır sayısını giriniz");
-        int row = input.nextInt();
-        System.out.println("Lütfen sütun sayısını giriniz");
-        int column = input.nextInt();
 
 
-
-        if( min_length(row,column)){
-
-            System.out.println(" Tebrikler Kazandınız! :)");
-
-        }
-
-        else{
-            System.out.println(" Kaybettiniz :( ");
-        }
     }
 }
